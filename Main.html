@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arithmetic Quiz</title>
+</head>
+<body>
+    <h2>Arithmetic Quiz</h2>
+    <p>You have 1 minute to answer the following questions:</p>
+    
+    <form id="quizForm">
+        <label for="question1">1 + 1 =</label>
+        <input type="text" id="question1" name="question1" required><br><br>
+
+        <label for="question2">2 + 2 =</label>
+        <input type="text" id="question2" name="question2" required><br><br>
+
+        <label for="question3">3 + 3 =</label>
+        <input type="text" id="question3" name="question3" required><br><br>
+
+        <label for="question4">4 + 4 =</label>
+        <input type="text" id="question4" name="question4" required><br><br>
+
+        <label for="question5">5 + 5 =</label>
+        <input type="text" id="question5" name="question5" required><br><br>
+        
+        <button type="submit" id="submitBtn">Submit Answers</button>
+    </form>
+
+    <p id="score"></p>
+
+    <script>
+        // Timer for 1 minute
+        setTimeout(function() {
+            document.getElementById('quizForm').submit();
+        }, 60000);
+
+        // Calculate score on form submission
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var score = 0;
+
+            var answers = {
+                'question1': '2',
+                'question2': '4',
+                'question3': '6',
+                'question4': '8',
+                'question5': '10'
+            };
+
+            for (var key in answers) {
+                var userAnswer = document.getElementById(key).value.trim();
+                if (userAnswer === answers[key]) {
+                    score += 2;
+                } else if (userAnswer === '') {
+                    score += 1;
+                }
+            }
+
+            document.getElementById('score').innerHTML = 'Your score is: ' + score;
+        });
+    </script>
+</body>
+</html>
